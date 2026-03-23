@@ -1,17 +1,12 @@
 <template>
     <div class="home">
         <header class="header">
-        <div> class="logo">
+        <div class="logo">
             Sistema de EPI
         </div>
         <nav class="menu">
-            <a>Home</a>
-            <a>Sobre</a>
-            <a>Funcionalidades</a>
-            <a>Contato</a>
-
             <button class="btn-sistema"
-            @click="irSistema"
+            @click="irLogin"
             >Área do Sistema
         </button>
         </nav>
@@ -21,11 +16,11 @@
             <div class="hero-text">
                 <h1>Controle de EPIs de forma simples e segura</h1>
         <p>
-            Sistema desenvolvido para gerenciamento de Equipamentos deProteção Individual, facilitando o controle de estoque, entrega e histórico.
+            Sistema desenvolvido para gerenciamento de Equipamentos de Proteção Individual, facilitando o controle de estoque, entrega e histórico.
         </p>
         <div class="hero-buttons">
             <button class="btn-primary"
-        @click="irSistema">
+        @click="irLogin">
         Acessar Sistema
     </button>
     <button class="btn-secondary" @click="irFuncionalidades">
@@ -60,13 +55,13 @@
                     <h2>Como Funciona o Sistema</h2>
                     <div class="steps">
                         <div class="step">Cadastro do Funcionário</div>
-                    <div class="arrow"></div>
+                    <div class="arrow">↓</div>
 
                     <div class="step">Cadastro do EPI</div>
-                    <div class="arrow"></div>
+                    <div class="arrow">↓</div>
 
                     <div class="step">Entrega do Equipamento</div>
-                    <div class="arrow"></div>
+                    <div class="arrow">↓</div>
 
                     <div class="step">Registro no Histórico</div>
                     </div>
@@ -80,7 +75,7 @@
                             Projeto Acadêmico
                         </div>
                         <div>
-                            Contato: contato@episystem.com
+                            Contato: contato@sistemaepi.com
                         </div>
                     </footer>
     </div>
@@ -91,37 +86,24 @@ export default {
     name: 'Home',
     data() {
         return {
-            // você pode usar isso depois se quiser adicionar interações
             mensagem: "Bem-vindo ao Sistema de Controle de EPIs"
         }
     },
     methods: {
-        // Vai para o dashboard
-        irSistema() {
-            this.$router.push('/dashboard')
+        irLogin() {
+            this.$router.push('/login')
         },
 
-        // Scroll até funcionalidades (botão "Ver Funcionalidades")
         irFuncionalidades() {
             const section = document.querySelector('.features')
             if (section) {
                 section.scrollIntoView({ behavior: 'smooth' })
             }
         },
-
-        // Exemplo de navegação futura
-        irSobre() {
-            this.$router.push('/sobre')
-        },
-
-        irContato() {
-            this.$router.push('/contato')
-        }
 },
 
 mounted() {
 
-    // Aqui roda quando a página carrega
     console.log("Página Home carregada com sucesso")
 }
 }
@@ -160,7 +142,7 @@ mounted() {
 }
 
 .menu a:hover {
-    opacity:0.7);
+    opacity:0.7;
 }
 
 .btn-sistema {
@@ -199,7 +181,7 @@ mounted() {
 }
 
 .hero-buttons {
-    margin-top:25px
+    margin-top:25px;
     display:flex;
     gap:20px;
 }
@@ -327,7 +309,7 @@ mounted() {
     }
 
     .hero-buttons {
-        flex-directtion:column;
+        flex-direction:column;
     }
 
     .cards {
