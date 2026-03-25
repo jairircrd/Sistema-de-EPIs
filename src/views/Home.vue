@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <header class="header">
-            <div class="logo">Sistema de EPI</div>
+            <div class="logo">Sistema de EPIs</div>
             <nav class="menu">
                 <button class="btn-sistema" @click="irLogin">Área do Sistema</button>
             </nav>
@@ -65,10 +65,19 @@
         </section>
 
         <footer class="footer">
-            <div>Sistema de Controle de EPIs</div>
-            <div>Projeto Acadêmico</div>
-            <div>Contato: contato@sistemaepi.com</div>
-        </footer>
+    <div class="footer-col">
+        <strong>Sistema de EPIs</strong>
+        <p>Gestão Inteligente de Segurança</p>
+    </div>
+    <div class="footer-col">
+        <strong>Projeto</strong>
+        <p>Acadêmico 2024</p>
+    </div>
+    <div class="footer-col">
+        <strong>Contato</strong>
+        <p>contato@sistemaepi.com</p>
+    </div>
+    </footer>
     </div>
 </template>
 
@@ -157,7 +166,13 @@ export default {
 
 .hero-image img {
     max-width: 450px;
-    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+    height: auto;
+    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.25));
+    transition: 0.5s ease;
+}
+
+.hero-image img:hover {
+    transform: translateY(-10px) scale(1.02);
 }
 
 .btn-primary {
@@ -260,14 +275,25 @@ export default {
 }
 
 .footer {
-    background:#1E3A8A;
-    color:white;
-    padding:30px;
-    display:flex;
-    justify-content:space-around;
-    margin-top:60px;
-    flex-wrap:wrap;
-    gap:10px;
+    background: #1E3A8A;
+    color: white;
+    padding: 50px 60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-top: 60px;
+    border-top: 5px solid #3B82F6;
+}
+
+.footer-col strong {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.footer-col p {
+    font-size: 14px;
+    opacity: 0.8;
 }
 
 @media(max-width:768px) {
