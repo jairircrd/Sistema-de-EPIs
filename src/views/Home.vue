@@ -1,111 +1,87 @@
 <template>
     <div class="home">
         <header class="header">
-        <div class="logo">
-            Sistema de EPI
-        </div>
-        <nav class="menu">
-            <button class="btn-sistema"
-            @click="irLogin"
-            >Área do Sistema
-        </button>
-        </nav>
+            <div class="logo">Sistema de EPI</div>
+            <nav class="menu">
+                <button class="btn-sistema" @click="irLogin">Área do Sistema</button>
+            </nav>
         </header>
 
         <section class="hero">
-            <div class="hero-text">
-                <h1>Controle de EPIs de forma simples e segura</h1>
-        <p>
-            Sistema desenvolvido para gerenciamento de Equipamentos de Proteção Individual, facilitando o controle de estoque, entrega e histórico.
-        </p>
-        <div class="hero-buttons">
-            <button class="btn-primary"
-        @click="irLogin">
-        Acessar Sistema
-    </button>
-    <button class="btn-secondary" @click="irFuncionalidades">
-        Ver Funcionalidades
-    </button>
-        </div>
-            </div>
-            </section>
-
-            <section class="features">
-                <h2>Funcionalidades do Sistema</h2>
-                <div class="cards">
-                    <div class="card">
-                        <h3>Funcionários</h3>
-                        <p>Cadastro e controle de colaboradores.</p>
-                    </div>
-                    <div class="card">
-                        <h3>EPIs</h3>
-                        <p>Gerenciamento de estoques de equipamentos.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Entregas</h3>
-                        <p>Registro de entrega de EPIs.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Histórico</h3>
-                        <p>Acompanhamento completo das movimentações.</p>
+            <div class="hero-container">
+                <div class="hero-text">
+                    <h1>Controle de EPIs de forma simples e segura</h1>
+                    <p>
+                        Sistema desenvolvido para gerenciamento de Equipamentos de Proteção Individual, facilitando o controle de estoque, entrega e histórico.
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn-primary" @click="irLogin">Acessar Sistema</button>
+                        <button class="btn-secondary" @click="irFuncionalidades">Ver Funcionalidades</button>
                     </div>
                 </div>
-                </section>
-                <section class="fluxo">
-                    <h2>Como Funciona o Sistema</h2>
-                    <div class="steps">
-                        <div class="step">Cadastro do Funcionário</div>
-                    <div class="arrow">↓</div>
+                <div class="hero-image">
+                    <img src="../assets/hero-security.png" alt="Segurança" />
+                </div>
+            </div>
+        </section>
 
-                    <div class="step">Cadastro do EPI</div>
-                    <div class="arrow">↓</div>
+        <section class="features">
+            <h2>Funcionalidades do Sistema</h2>
+            <div class="cards">
+                <div class="card">
+                    <div class="icon-bg blue">👤</div>
+                    <h3>Funcionários</h3>
+                    <p>Cadastro e controle de colaboradores.</p>
+                </div>
+                <div class="card">
+                    <div class="icon-bg orange">⛑️</div>
+                    <h3>EPIs</h3>
+                    <p>Gerenciamento de estoques de equipamentos.</p>
+                </div>
+                <div class="card">
+                    <div class="icon-bg light-blue">📦</div>
+                    <h3>Entregas</h3>
+                    <p>Registro de entrega de EPIs.</p>
+                </div>
+                <div class="card">
+                    <div class="icon-bg dark-blue">📊</div>
+                    <h3>Histórico</h3>
+                    <p>Acompanhamento completo das movimentações.</p>
+                </div>
+            </div>
+        </section>
 
-                    <div class="step">Entrega do Equipamento</div>
-                    <div class="arrow">↓</div>
+        <section class="fluxo">
+            <h2>Como Funciona o Sistema</h2>
+            <div class="steps">
+                <div class="step">Cadastro do Funcionário</div>
+                <div class="arrow">↓</div>
+                <div class="step">Cadastro do EPI</div>
+                <div class="arrow">↓</div>
+                <div class="step">Entrega do Equipamento</div>
+                <div class="arrow">↓</div>
+                <div class="step">Registro no Histórico</div>
+            </div>
+        </section>
 
-                    <div class="step">Registro no Histórico</div>
-                    </div>
-                    </section>
-
-                    <footer class="footer">
-                        <div>
-                            Sistema de Controle de EPIs
-                        </div>
-                        <div>
-                            Projeto Acadêmico
-                        </div>
-                        <div>
-                            Contato: contato@sistemaepi.com
-                        </div>
-                    </footer>
+        <footer class="footer">
+            <div>Sistema de Controle de EPIs</div>
+            <div>Projeto Acadêmico</div>
+            <div>Contato: contato@sistemaepi.com</div>
+        </footer>
     </div>
 </template>
 
 <script>
 export default {
     name: 'Home',
-    data() {
-        return {
-            mensagem: "Bem-vindo ao Sistema de Controle de EPIs"
-        }
-    },
     methods: {
-        irLogin() {
-            this.$router.push('/login')
-        },
-
+        irLogin() { this.$router.push('/login') },
         irFuncionalidades() {
             const section = document.querySelector('.features')
-            if (section) {
-                section.scrollIntoView({ behavior: 'smooth' })
-            }
+            if (section) { section.scrollIntoView({ behavior: 'smooth' }) }
         },
-},
-
-mounted() {
-
-    console.log("Página Home carregada com sucesso")
-}
+    }
 }
 </script>
 
@@ -130,21 +106,6 @@ mounted() {
     font-weight: bold;
 }
 
-.menu {
-    display:flex;
-    gap:30px;
-    align-items: center;
-}
-
-.menu a {
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.menu a:hover {
-    opacity:0.7;
-}
-
 .btn-sistema {
     background:#3B82F6;
     color:white;
@@ -166,6 +127,14 @@ mounted() {
     padding:100px 60px;
 }
 
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 .hero-text {
     max-width:600px;
 }
@@ -184,6 +153,11 @@ mounted() {
     margin-top:25px;
     display:flex;
     gap:20px;
+}
+
+.hero-image img {
+    max-width: 450px;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
 }
 
 .btn-primary {
@@ -247,13 +221,21 @@ mounted() {
     transform:translateY(-5px);
 }
 
-.card h3 {
-    margin-bottom:10px;
+.icon-bg {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 24px;
 }
+.icon-bg.blue { background: #DBEAFE; }
+.icon-bg.orange { background: #FFEDD5; }
+.icon-bg.light-blue { background: #E0F2FE; }
+.icon-bg.dark-blue { background: #E0E7FF; }
 
 .fluxo {
-    padding:80px 60px;
-    text-align:center;
+    padding: 80px 60px;
+    text-align: center;
 }
 
 .steps {
@@ -269,6 +251,7 @@ mounted() {
     padding:15px 25px;
     border-radius:10px;
     box-shadow:0 3px 10px rgba(0,0,0,0.1);
+    width: 280px;
 }
 
 .arrow {
@@ -288,38 +271,10 @@ mounted() {
 }
 
 @media(max-width:768px) {
-    .header {
-        flex-direction:column;
-        gap:15px;
-        text-align:center;
-    }
-
-    .menu {
-        flex-direction:column;
-        gap:10px;
-    }
-
-    .hero {
-        padding:60px 20px;
-        text-align:center;
-    }
-
-    .hero h1 {
-        font-size:28px;
-    }
-
-    .hero-buttons {
-        flex-direction:column;
-    }
-
-    .cards {
-        flex-direction:column;
-        align-items:center;
-    }
-
-    .footer {
-        flex-direction:column;
-        text-align:center;
-    }
+    .hero-container { flex-direction: column; text-align: center; }
+    .hero-image img { max-width: 100%; margin-top: 30px; }
+    .header, .footer { flex-direction:column; gap:15px; text-align:center; }
+    .hero-buttons { flex-direction:column; }
+    .cards { flex-direction:column; align-items:center; }
 }
 </style>
