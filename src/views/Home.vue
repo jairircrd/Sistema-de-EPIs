@@ -142,10 +142,11 @@ export default {
     justify-content: space-between;
     max-width: 1200px;
     margin: 0 auto;
+    gap: 20px;
 }
 
 .hero-text {
-    max-width:600px;
+    max-width:550px;
 }
 
 .hero h1 {
@@ -165,9 +166,9 @@ export default {
 }
 
 .hero-image img {
-    max-width: 450px;
+    max-width: 350px;
     height: auto;
-    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.25));
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.15));
     transition: 0.5s ease;
 }
 
