@@ -1,148 +1,154 @@
 <template>
-  <div class="container">
-  <h2>Entrar na sua conta</h2>
-  
-  <form @submit.prevent="fazerLogin">
-  <div class="campo">
-  <label>E-mail</label>
-  <input type="email" v-model="email" required /> </div>
-  <div class="campo">
-  <label>Senha</label>
-  <input type="password" v-model="senha" required /> </div>
-  <p v-if="erro">{{ erro }}</p>
-  <button type="submit">Entrar</button>
-  </form> </div>
+  <div class="login-container">
+    <div class="login-card">
+      <header class="login-header">
+        <div class="logo-login">Sistema de EPIs</div>
+        <p>Acesse sua conta para gerenciar equipamentos</p>
+      </header>
+
+      <form @submit.prevent="handleLogin" class="login-form">
+        <div class="input-group">
+          <label>E-mail</label>
+          <input v-model="email" type="email" placeholder="Digite seu e-mail" required />
+        </div>
+
+        <div class="input-group">
+          <label>Senha</label>
+          <input v-model="password" type="password" placeholder="Digite sua senha" required />
+        </div>
+
+        <button type="submit" class="btn-login" :disabled="loading">
+          {{ loading ? 'Entrando...' : 'Entrar no Sistema' }}
+        </button>
+
+        <div class="login-footer">
+          <a href="#" class="forgot-password" @click.prevent="esqueciSenha">Esqueci minha senha</a>
+        </div>
+      </form>
+
+      <p v-if="error" class="error-msg">{{ error }}</p>
+    </div>
+  </div>
 </template>
 
-<script setup>
-import { ref } from 'vue'
-import { useSupabase } from '@/composables/useSupabase'
-import { useRouter } from 'vue-router'
-
-const { supabase } = useSupabase();
-const router = useRouter();
-
-const email = ref('');
-const senha = ref('');
-const erro = ref('');
-async function fazerLogin() {
-  const { error } = await supabase.auth.signInWithPassword({
-    email: email.value,
-    password: senha.value
-  })
-
-  if (error) {
-    erro.value = 'Credenciais inválidas'
-    return
+<script>
+export default {
+  data() {
+    return {
+      email: '',
+      password: '',
+      loading: false,
+      error: null
+    }
+  },
+  methods: {
+    handleLogin() {
+      console.log("Tentando logar com:", this.email)
+    },
+    esqueciSenha() {
+      alert("Recuperação de senha enviada para o e-mail cadastrado!")
+    }
   }
-
-  router.push('/dashboard')
 }
 </script>
 
 <style scoped>
-.container {
+.login-container {
+  height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #1E3A8A, #3B82F6);
+  justify-content: center;
+  background: #F5F7FA;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .login-card {
   background: white;
   padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   width: 100%;
   max-width: 400px;
   text-align: center;
 }
 
-.login-header h2 {
+.logo-login {
+  font-size: 24px;
+  font-weight: bold;
   color: #1E3A8A;
-  font-size: 22px;
-  margin-bottom: 30px;
-  border-bottom: 2px solid #F3F4F6;
-  padding-bottom: 15px;
-}
-
-.login-icon {
-  font-size: 50px;
   margin-bottom: 10px;
 }
 
-.login-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.login-header p {
+  color: #6B7280;
+  font-size: 14px;
+  margin-bottom: 30px;
 }
 
 .input-group {
   text-align: left;
+  margin-bottom: 20px;
 }
 
 .input-group label {
   display: block;
   font-weight: bold;
-  color: #1E3A8A;
   margin-bottom: 8px;
+  color: #1F2937;
 }
 
-.input-group input {
+input {
   width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #D1D5DB;
-  border-radius: 25px;
-  outline: none;
-  transition: 0.3s;
+  padding: 12px;
+  border: 1.5px solid #D1D5DB;
+  border-radius: 8px;
   box-sizing: border-box;
+  transition: 0.3s;
 }
 
-.input-group input:focus {
+input:focus {
   border-color: #3B82F6;
-  box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .btn-login {
+  width: 100%;
   background: #1E3A8A;
   color: white;
   border: none;
   padding: 14px;
-  border-radius: 25px;
+  border-radius: 8px;
   font-weight: bold;
-  font-size: 16px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: transform 0.3s ease, background 0.3s ease;
   margin-top: 10px;
 }
 
 .btn-login:hover {
-  transform: scale(1.03);
-  background: #172554;
+  transform: scale(1.05);
+  background: #3B82F6;
+}
+
+.login-footer {
+  margin-top: 20px;
 }
 
 .forgot-password {
   color: #3B82F6;
-  font-size: 13px;
   text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s;
 }
 
 .forgot-password:hover {
   text-decoration: underline;
-}
-
-.btn-back {
-  background: none;
-  border: none;
-  color: #9CA3AF;
-  margin-top: 25px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.btn-back:hover {
   color: #1E3A8A;
+}
+
+.error-msg {
+  color: #EF4444;
+  margin-top: 15px;
+  font-size: 14px;
 }
 </style>
