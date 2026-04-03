@@ -87,8 +87,8 @@ export default {
     methods: {
         irLogin() { this.$router.push('/login') },
         irFuncionalidades() {
-            const section = document.querySelector('.features')
-            if (section) { section.scrollIntoView({ behavior: 'smooth' }) }
+            const element = document.getElementById('features')
+            if (element) { element.scrollIntoView({ behavior: 'smooth' }) }
         },
     }
 }

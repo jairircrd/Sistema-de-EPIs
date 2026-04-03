@@ -1,50 +1,51 @@
 <template>
-  <div class="login-page">
-    <div class="login-card">
-      <div class="login-header">
-        <div class="login-icon">⛑️</div>
-        <h2>Sistema de Controle de EPIs</h2>
-      </div>
-
-      <form @submit.prevent="fazerLogin" class="login-form">
-        <div class="input-group">
-          <label><span class="icon">✉️</span> E-mail</label>
-          <input type="email" placeholder="Digite seu e-mail" required />
-        </div>
-
-        <div class="input-group">
-          <label><span class="icon">🔒</span> Senha</label>
-          <input type="password" placeholder="Digite sua senha" required />
-        </div>
-
-        <button type="submit" class="btn-login">Entrar</button>
-
-        <a href="#" class="forgot-password">Esqueci minha senha</a>
-      </form>
-      
-      <button class="btn-back" @click="$router.push('/')">← Voltar para Home</button>
-    </div>
-  </div>
+  <div class="container">
+  <h2>Entrar na sua conta</h2>
+  
+  <form @submit.prevent="fazerLogin">
+  <div class="campo">
+  <label>E-mail</label>
+  <input type="email" v-model="email" required /> </div>
+  <div class="campo">
+  <label>Senha</label>
+  <input type="password" v-model="senha" required /> </div>
+  <p v-if="erro">{{ erro }}</p>
+  <button type="submit">Entrar</button>
+  </form> </div>
 </template>
 
-<script>
-export default {
-  name: 'Login',
-  methods: {
-    fazerLogin() {
-      console.log("Tentativa de login enviada");
-      this.$router.push('/relatorio');
-    }
+<script setup>
+import { ref } from 'vue'
+import { useSupabase } from '@/composables/useSupabase'
+import { useRouter } from 'vue-router'
+
+const { supabase } = useSupabase();
+const router = useRouter();
+
+const email = ref('');
+const senha = ref('');
+const erro = ref('');
+async function fazerLogin() {
+  const { error } = await supabase.auth.signInWithPassword({
+    email: email.value,
+    password: senha.value
+  })
+
+  if (error) {
+    erro.value = 'Credenciais inválidas'
+    return
   }
+
+  router.push('/dashboard')
 }
 </script>
 
 <style scoped>
-.login-page {
-  height: 100vh;
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 100vh;
   background: linear-gradient(135deg, #1E3A8A, #3B82F6);
   font-family: Arial, Helvetica, sans-serif;
 }
